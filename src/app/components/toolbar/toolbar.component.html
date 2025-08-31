@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <span class="app-title">CarSharingApp</span>
+
+  <button mat-button routerLink="/cars" routerLinkActive="active-link">Cars</button>
+  <button mat-button routerLink="/clients" routerLinkActive="active-link">Clients</button>
+
+
+  <span class="spacer"></span>
+
+  <button mat-button class="logout-btn" *ngIf="storageService.isLoggedIn()" (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>
+

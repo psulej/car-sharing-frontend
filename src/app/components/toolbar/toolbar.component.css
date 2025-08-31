@@ -1,0 +1,44 @@
+.custom-toolbar {
+  height: 100px;
+  padding: 0 40px;
+  background-color: #495057;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 32px;
+  margin-right: 48px;
+  color: #ffffff;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 24px;
+}
+
+button[mat-button] {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button[mat-button]:hover {
+  background-color: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.active-link {
+  font-weight: 700;
+  border-bottom: 4px solid #ffffff;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
