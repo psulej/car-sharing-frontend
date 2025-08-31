@@ -26,6 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MatCardModule} from "@angular/material/card";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatOptionModule,
+    MatSelectModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

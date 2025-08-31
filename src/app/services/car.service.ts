@@ -13,12 +13,9 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getPaginatedCars(): Observable<CarPage> {
-    return this.http.get<CarPage>(baseUrl);
-  }
-
-  getCarsPage(id: any): Observable<CarPage> {
-    return this.http.get(`${baseUrl}/${id}`);
+  getCarsPage(phrase: string, pageIndex: number, pageSize: number): Observable<CarPage> {
+    const params = `?page=${pageIndex}&size=${pageSize}&phrase=${phrase}`;
+    return this.http.get<CarPage>(`${baseUrl}${params}`);
   }
 
   create(data: any): Observable<any> {

@@ -1,7 +1,7 @@
 export class Car {
-  id?: number;
+  carId?: number;
   brand?: string;
   model?: string;
   costPerDay?: number;
-  isRented?: boolean;
+  status?: string;
 }
