@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Car} from "../models/car.model";
+import {CarPage} from "../models/car-page.model";
 
 // TODO - add url from local profile
-const baseUrl = '';
+const baseUrl = 'http://localhost:8080/api/cars';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,11 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Car[]> {
-    return this.http.get<Car[]>(baseUrl);
+  getPaginatedCars(): Observable<CarPage> {
+    return this.http.get<CarPage>(baseUrl);
   }
 
-  get(id: any): Observable<Car> {
+  getCarsPage(id: any): Observable<CarPage> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
@@ -31,9 +31,5 @@ export class CarService {
 
   delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
   }
 }
