@@ -143,23 +143,34 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   rentCar(car: Car) {
     const dialogRef = this.dialog.open(AddRentalComponent, {
       width: '400px',
-      data: { car } // pass full car object
+      data: { car }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        const { clientId, rentStart, rentEnd } = result;
+
         this.rentalService.createRental(
-          result.carId,
-          result.clientId,
-          result.rentStart,
-          result.rentEnd
+          car.carId,
+          clientId,
+          rentStart.toISOString(),
+          rentEnd.toISOString()
         ).subscribe({
           next: (createdRental) => {
             console.log('Rental created:', createdRental);
+            const index = this.dataSource.data.findIndex(c => c.carId === car.carId);
+            if (index > -1) {
+              this.dataSource.data[index] = { ...this.dataSource.data[index], status: 'Rented' };
+              this.dataSource._updateChangeSubscription();
+            }
+            dialogRef.close();
             this.loadPage(this.phrase, this.pageIndex, this.pageSize);
           },
-          error: (err) => console.error(err)
+          error: (err) => console.error('Error creating rental:', err)
         });
       }
     });
-  }}
+  }
+
+
+}

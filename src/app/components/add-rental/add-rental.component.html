@@ -2,17 +2,15 @@
 
 <mat-dialog-content [formGroup]="rentalForm">
 
-  <!-- Client select -->
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Client</mat-label>
     <mat-select formControlName="clientId" required>
-      <mat-option *ngFor="let client of clients" [value]="client.id">
+      <mat-option *ngFor="let client of clients" [value]="client">
         {{ client.firstName }} {{ client.lastName }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <!-- Rent start -->
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Rent Start</mat-label>
     <input matInput [matDatepicker]="startPicker" formControlName="rentStart" required>
@@ -20,7 +18,6 @@
     <mat-datepicker #startPicker></mat-datepicker>
   </mat-form-field>
 
-  <!-- Rent end -->
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Rent End</mat-label>
     <input matInput [matDatepicker]="endPicker" formControlName="rentEnd" required>
