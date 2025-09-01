@@ -1,27 +1,39 @@
-# CarSharingFrontend
+<img width="759" height="584" alt="image" src="https://github.com/user-attachments/assets/f6e47ec7-54aa-4e52-aac6-5ca3fbfe7bd8" />
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+<img width="2507" height="1275" alt="image" src="https://github.com/user-attachments/assets/b82ea064-1f5d-4043-856c-9960ffd1312e" />
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+<img width="395" height="364" alt="image" src="https://github.com/user-attachments/assets/b15fab32-f4ba-4d33-a2f0-f0c16d02217e" />
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+<img width="396" height="337" alt="image" src="https://github.com/user-attachments/assets/3f9392eb-5a11-4a19-9a37-6a520c680bed" />
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+<img width="2204" height="717" alt="image" src="https://github.com/user-attachments/assets/29dfdb94-0523-4a3a-b453-d3f8af253e1a" />
+
+
+
+
+<img width="2186" height="692" alt="image" src="https://github.com/user-attachments/assets/2dcd1863-7935-42f8-9096-968c1ab0d4ab" />
+
+
+
+
+<img width="496" height="311" alt="image" src="https://github.com/user-attachments/assets/c6172601-ebf9-4e13-b75f-d8e45d786806" />
+
+
+
+
+
+
+
+
