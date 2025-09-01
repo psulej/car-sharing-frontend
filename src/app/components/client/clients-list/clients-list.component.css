@@ -1,0 +1,66 @@
+.clients-container {
+  padding: 24px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.clients-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell {
+  background-color: #e9ecef;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+
+td.mat-cell {
+  padding: 12px 16px;
+}
+
+tr.mat-row:nth-child(even) {
+  background-color: #f1f3f5;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.custom-paginator {
+  font-size: 14px;
+  color: #495057;
+}
+
+.custom-paginator .mat-paginator-page-size,
+.custom-paginator .mat-select-value-text,
+.custom-paginator .mat-paginator-range-label,
+.custom-paginator .mat-paginator-navigation-next,
+.custom-paginator .mat-paginator-navigation-previous {
+  color: #495057;
+  font-weight: 500;
+}
+
+.mat-select-panel {
+  background-color: #fff !important;
+}

@@ -26,8 +26,12 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MatCardModule} from "@angular/material/card";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
-import {MatOptionModule} from "@angular/material/core";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { RentalInfoDialogComponent } from './components/rental-info-dialog/rental-info-dialog.component';
+import {AddRentalComponent} from "./components/add-rental/add-rental.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -38,7 +42,9 @@ import {MatSelectModule} from "@angular/material/select";
     ClientsListComponent,
     AddClientComponent,
     ToolbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RentalInfoDialogComponent,
+    AddRentalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,10 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     MatCardModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

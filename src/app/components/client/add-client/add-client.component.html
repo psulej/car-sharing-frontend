@@ -1,1 +1,26 @@
-<p>add-client works!</p>
+<h2 mat-dialog-title>Add New Client</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="clientForm">
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>First name</mat-label>
+      <input matInput formControlName="firstName"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>Last name</mat-label>
+      <input matInput formControlName="lastName"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email"/>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()">Save</button>
+</mat-dialog-actions>

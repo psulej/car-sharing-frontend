@@ -6,6 +6,10 @@ import {AddCarComponent} from "../add-car/add-car.component";
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../models/car.model";
 import {CarPage} from "../../../models/car-page.model";
+import {RentalsService} from "../../../services/rentals.service";
+import {RentalInfoDialogComponent} from "../../rental-info-dialog/rental-info-dialog.component";
+import {AddRentalComponent} from "../../add-rental/add-rental.component";
+
 
 
 @Component({
@@ -15,7 +19,7 @@ import {CarPage} from "../../../models/car-page.model";
 })
 export class CarsListComponent implements OnInit, AfterViewInit {
 
-  constructor(private dialog: MatDialog, private carService: CarService) {
+  constructor(private dialog: MatDialog, private carService: CarService, private rentalService: RentalsService) {
   }
 
   displayedColumns: string[] = ['id', 'brand', 'model', 'costPerDay', 'status', 'actions'];
@@ -122,4 +126,40 @@ export class CarsListComponent implements OnInit, AfterViewInit {
     this.phrase = event.target.value;
     this.loadPage(this.phrase, this.pageIndex, this.pageSize);
   }
-}
+
+
+  showRentalInfo(car: Car) {
+    this.rentalService.getRentalInfo(car.carId).subscribe({
+      next: (rentalInfo) => {
+        this.dialog.open(RentalInfoDialogComponent, {
+          width: '400px',
+          data: rentalInfo
+        });
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  rentCar(car: Car) {
+    const dialogRef = this.dialog.open(AddRentalComponent, {
+      width: '400px',
+      data: { car } // pass full car object
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.rentalService.createRental(
+          result.carId,
+          result.clientId,
+          result.rentStart,
+          result.rentEnd
+        ).subscribe({
+          next: (createdRental) => {
+            console.log('Rental created:', createdRental);
+            this.loadPage(this.phrase, this.pageIndex, this.pageSize);
+          },
+          error: (err) => console.error(err)
+        });
+      }
+    });
+  }}
