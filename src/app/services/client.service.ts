@@ -18,6 +18,11 @@ export class ClientService {
     return this.http.get<ClientPage>(`${baseUrl}${params}`);
   }
 
+  getClientById(clientId: number): Observable<ClientPage> {
+    return this.http.get<ClientPage>(`${baseUrl}/${clientId}`);
+  }
+
+
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }

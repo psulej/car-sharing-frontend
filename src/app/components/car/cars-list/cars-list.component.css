@@ -73,3 +73,22 @@ tr.mat-row:nth-child(even) {
   height: 30px;
 }
 
+
+.green-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.yellow-btn {
+  background-color: yellow;
+  color: black;
+}
+
+.green-btn:hover {
+  background-color: #45a049;
+}
+
+
+.available-icon {
+  color: green;
+}

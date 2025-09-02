@@ -9,7 +9,9 @@ import {CarPage} from "../../../models/car-page.model";
 import {RentalsService} from "../../../services/rentals.service";
 import {RentalInfoDialogComponent} from "../../rental-info-dialog/rental-info-dialog.component";
 import {AddRentalComponent} from "../../add-rental/add-rental.component";
-
+import {ClientService} from "../../../services/client.service";
+import {EditCarComponent} from "../edit-car/edit-car.component";
+import {UnrentCarComponent} from "../unrent-car/unrent-car.component";
 
 
 @Component({
@@ -19,7 +21,7 @@ import {AddRentalComponent} from "../../add-rental/add-rental.component";
 })
 export class CarsListComponent implements OnInit, AfterViewInit {
 
-  constructor(private dialog: MatDialog, private carService: CarService, private rentalService: RentalsService) {
+  constructor(private dialog: MatDialog, private carService: CarService, private rentalService: RentalsService, private clientService: ClientService) {
   }
 
   displayedColumns: string[] = ['id', 'brand', 'model', 'costPerDay', 'status', 'actions'];
@@ -28,7 +30,6 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   totalElements: any = 0;
   pageSize: any = 5;
   pageIndex: any = 0;
-
   phrase: string = ''
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -84,9 +85,9 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
 
   editCar(car: Car): void {
-    const dialogRef = this.dialog.open(AddCarComponent, {
+    const dialogRef = this.dialog.open(EditCarComponent, {
       width: '500px',
-      data: {car}
+      data: { car }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,14 +96,17 @@ export class CarsListComponent implements OnInit, AfterViewInit {
           ...car,
           brand: result.brand,
           model: result.model,
-          costPerDay: result.cost
+          pricePerDay: result.costPerDay
         };
 
         this.carService.update(car.carId, updatedCar).subscribe({
           next: (res) => {
-            const index = this.dataSource.data.findIndex(c => c.carId === car.carId);
+            const index = this.dataSource.data.findIndex(c => c.carId === res.carId);
             if (index > -1) {
-              this.dataSource.data[index] = res;
+              this.dataSource.data[index].brand = res.brand;
+              this.dataSource.data[index].model = res.model;
+              this.dataSource.data[index].pricePerDay = res.pricePerDay;
+              this.dataSource.data[index].status = res.status;
               this.dataSource._updateChangeSubscription();
             }
           },
@@ -131,14 +135,24 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   showRentalInfo(car: Car) {
     this.rentalService.getRentalInfo(car.carId).subscribe({
       next: (rentalInfo) => {
-        this.dialog.open(RentalInfoDialogComponent, {
-          width: '400px',
-          data: rentalInfo
+        this.clientService.getClientById(rentalInfo.clientId).subscribe({
+          next: (clientInfo) => {
+            this.dialog.open(RentalInfoDialogComponent, {
+              width: '400px',
+              data: {
+                car: car,
+                rentalInfo: rentalInfo,
+                clientInfo: clientInfo
+              }
+            });
+          },
+          error: (err) => console.error('Error fetching client info:', err)
         });
       },
-      error: (err) => console.error(err)
+      error: (err) => console.error('Error fetching rental info:', err)
     });
   }
+
 
   rentCar(car: Car) {
     const dialogRef = this.dialog.open(AddRentalComponent, {
@@ -148,29 +162,24 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const { clientId, rentStart, rentEnd } = result;
-
-        this.rentalService.createRental(
-          car.carId,
-          clientId,
-          rentStart.toISOString(),
-          rentEnd.toISOString()
-        ).subscribe({
-          next: (createdRental) => {
-            console.log('Rental created:', createdRental);
-            const index = this.dataSource.data.findIndex(c => c.carId === car.carId);
-            if (index > -1) {
-              this.dataSource.data[index] = { ...this.dataSource.data[index], status: 'Rented' };
-              this.dataSource._updateChangeSubscription();
-            }
-            dialogRef.close();
-            this.loadPage(this.phrase, this.pageIndex, this.pageSize);
-          },
-          error: (err) => console.error('Error creating rental:', err)
-        });
+        console.log("refresh rent car")
+        this.loadPage(this.phrase, this.pageIndex, this.pageSize)
       }
     });
   }
 
+  unrentCar(car: Car): void {
 
+    const dialogRef = this.dialog.open(UnrentCarComponent, {
+      width: '400px',
+      data: { car }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("refresh unrent car");
+        this.loadPage(this.phrase, this.pageIndex, this.pageSize);
+      }
+    });
+  }
 }

@@ -32,6 +32,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { RentalInfoDialogComponent } from './components/rental-info-dialog/rental-info-dialog.component';
 import {AddRentalComponent} from "./components/add-rental/add-rental.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { EditCarComponent } from './components/car/edit-car/edit-car.component';
+import { UnrentCarComponent } from './components/car/unrent-car/unrent-car.component';
+import { EditClientComponent } from './components/client/edit-client/edit-client.component';
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     ToolbarComponent,
     LoginPageComponent,
     RentalInfoDialogComponent,
-    AddRentalComponent
+    AddRentalComponent,
+    EditCarComponent,
+    UnrentCarComponent,
+    EditClientComponent
   ],
   imports: [
     BrowserModule,

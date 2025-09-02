@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Edit Existing Car</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="carForm">
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>Brand</mat-label>
+      <input matInput formControlName="brand"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full input">
+      <mat-label>Cost per day</mat-label>
+      <input matInput formControlName="costPerDay" type="number" />
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()">Save</button>
+</mat-dialog-actions>

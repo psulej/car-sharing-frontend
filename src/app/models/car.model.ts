@@ -2,6 +2,6 @@ export class Car {
   carId?: number;
   brand?: string;
   model?: string;
-  costPerDay?: number;
+  pricePerDay?: number;
   status?: string;
 }

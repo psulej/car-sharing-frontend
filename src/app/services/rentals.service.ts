@@ -20,4 +20,8 @@ export class RentalsService {
     const rental = { carId, clientId, rentStart, rentEnd };
     return this.http.post(baseUrl, rental);
   }
+
+  finishRental(carId: any): Observable<any> {
+    return this.http.post(`${baseUrl}/${carId}`, null);
+  }
 }
